@@ -4,8 +4,12 @@ from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-database_name = "casting-agency"
-database_path = database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
+#local db path
+#database_name = "casting-agency"
+#database_path = database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
+
+#Heroku db path
+database_path = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
 
