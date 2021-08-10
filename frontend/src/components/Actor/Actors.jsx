@@ -9,7 +9,8 @@ class Actors extends Component
 
 		this.state =  {
 			actors: [],
-			loading: true
+			loading: true,
+			error: ''
 		}
 	}
 
@@ -48,10 +49,18 @@ class Actors extends Component
             scope: "delete:actor",
         });
 		
+		let me = this;
 		axios.delete(`/actors/${actorId}`,
 		{headers: {Authorization: `Bearer ${accessToken}`}}).then(response => {
 			this.populateActorsData();
-		})
+		}).catch(function(error) {
+            if (error.response) {
+                me.setState({error: error.response.data});
+            }
+            else {
+                alert("Something went wrong! Please try again.")
+            }
+        });
 	}
 
 	renderActorsTable(actors) {
@@ -92,6 +101,10 @@ class Actors extends Component
 		(
 			this.renderActorsTable(this.state.actors)
 		)
+
+		if (this.state.error) {
+            alert("You do not have permission to delete an actor.");
+        }
 
 		return (
 			<div>

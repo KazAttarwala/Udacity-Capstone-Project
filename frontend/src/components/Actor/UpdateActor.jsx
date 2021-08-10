@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { withAuth0 } from '@auth0/auth0-react';
 import getAuthHeader from '../getAuthHeader';
+import Error from '../Error'
 
 class UpdateActor extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class UpdateActor extends Component {
         this.state = {
             name: '',
             age: 0,
-            gender: ''
+            gender: '',
+            error: ''
         }
     }
 
@@ -47,6 +49,7 @@ class UpdateActor extends Component {
             scope: "read:actors",
         });
 
+        let me = this;
         axios.get(`/actors/${id}`,
         {headers: {Authorization: `Bearer ${accessToken}`}}).then(response => {
             this.setState({
@@ -54,6 +57,13 @@ class UpdateActor extends Component {
                 gender: response.data.actor.gender,
                 age: response.data.actor.age
             });
+        }).catch(function(error) {
+            if (error.response) {
+                me.setState({error: error.response.data});
+            }
+            else {
+                alert("Something went wrong! Please try again.")
+            }
         })
 
     }
@@ -75,11 +85,19 @@ class UpdateActor extends Component {
             age: this.state.age
         }
 
+        let me = this;
         axios.patch(`/actors/${id}`, 
         actorObj,
         {headers: {Authorization: `Bearer ${accessToken}`}}).then(result => {
             history.push('/actors');
-        })
+        }).catch(function(error) {
+            if (error.response) {
+                me.setState({error: error.response.data});
+            }
+            else {
+                alert("Something went wrong! Please try again.")
+            }
+        });
     }
 
     onCancelUpdate(e) {
@@ -90,7 +108,10 @@ class UpdateActor extends Component {
     }
 
     render() {
-        return (
+        let error = this.state.error;
+
+        return error ? (<Error error={error} />) :
+        (
             <div className="movie-form" >
                 <h3>Update actor</h3>
                 <form onSubmit={this.onSubmit}>

@@ -9,7 +9,8 @@ class Movies extends Component
 
 		this.state =  {
 			movies: [],
-			loading: true
+            loading: true,
+            error: ''
 		}
 	}
 
@@ -47,10 +48,18 @@ class Movies extends Component
             scope: "delete:movie",
         });
         
+        let me = this;
         axios.delete(`/movies/${movieId}`,
         {headers: {Authorization: `Bearer ${accessToken}`}}).then(response => {
             this.populateMoviesData();
-        })
+        }).catch(function(error) {
+            if (error.response) {
+                me.setState({error: error.response.data});
+            }
+            else {
+                alert("Something went wrong! Please try again.")
+            }
+        });
     }
 
 	renderMoviesTable(movies) {
@@ -67,7 +76,7 @@ class Movies extends Component
 						movies.map(movie => (
 							<tr key={movie.id}>
 								<td>{movie.title}</td>
-								<td>{new Date(movie.release_date).toLocaleDateString()}</td>
+								<td>{movie.release_date}</td>
                                 <td>
                                     <div className="form-group">
                                         <button className="btn btn-primary" onClick={() => this.redirectToUpdate(movie.id)}>Update</button>
@@ -89,6 +98,10 @@ class Movies extends Component
 		(
 			this.renderMoviesTable(this.state.movies)
 		)
+        
+        if (this.state.error) {
+            alert("You do not have permission to delete a movie.");
+        }
 
 		return (
 			<div>
