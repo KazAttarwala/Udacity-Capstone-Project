@@ -5,8 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
 import json
-from ..models import *
-from ..auth import *
+from models import *
+from auth import *
 from datetime import datetime
 
 def create_app(test_config=None):
