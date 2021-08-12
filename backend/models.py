@@ -6,7 +6,7 @@ import json
 
 #local db path
 #database_name = "casting-agency"
-#database_path = database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
+#database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
 
 #Heroku db path
 database_path = os.environ['DATABASE_URL']
