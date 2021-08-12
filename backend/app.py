@@ -20,6 +20,10 @@ def create_app(test_config=None):
 APP = create_app()
 migrate = Migrate(APP, db)
 
+@APP.route('/')
+def serve():
+  return send_from_directory(app.static_folder, 'index.html')
+  
 #Actor Routes
 @APP.route('/actors')
 @requires_auth('read:actors')
@@ -255,6 +259,7 @@ def handle_auth_error(ex):
   response = jsonify(ex.error)
   response.status_code = ex.status_code
   return response
+
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
