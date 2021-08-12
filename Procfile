@@ -1,2 +1,2 @@
-release: python3 manage.py migrate
+release: python3 --chdir backend manage.py migrate
 web: gunicorn --chdir backend app:APP
