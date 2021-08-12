@@ -2,7 +2,7 @@ import os
 import sys
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
 import json
 from models import *
@@ -21,9 +21,10 @@ APP = create_app()
 migrate = Migrate(APP, db)
 
 @APP.route('/')
+@cross_origin
 def serve():
   return send_from_directory(app.static_folder, 'index.html')
-  
+
 #Actor Routes
 @APP.route('/actors')
 @requires_auth('read:actors')
