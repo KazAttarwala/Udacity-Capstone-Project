@@ -3,13 +3,16 @@ import os
 from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
+import re
 
 #local db path
 #database_name = "casting-agency"
 #database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
 
 #Heroku db path
-database_path = os.environ['DATABASE_URL']
+database_path = os.getenv("DATABASE_URL")
+if database_path.startswith("postgres://"):
+    database_path = database_path.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy()
 
