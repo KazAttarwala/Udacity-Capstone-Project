@@ -30,9 +30,6 @@ def serve():
 def get_actors(payload):
   try:
     actors = list(map(Actor.format, Actor.query.order_by(Actor.id).all()))
-    
-    if (len(actors) == 0):
-      abort(404, "No actors could be found.")
 
     return jsonify({
       "actors": actors
@@ -129,9 +126,6 @@ def update_actor(payload, actor_id):
 def get_movies(payload):
   try:
     movies = list(map(Movie.format, Movie.query.order_by(Movie.id).all()))
-
-    if (len(movies) == 0):
-      abort(404, "No movies could be found.")
 
     for movie in movies:
       movie['release_date'] = movie['release_date'].strftime("%m/%d/%Y")

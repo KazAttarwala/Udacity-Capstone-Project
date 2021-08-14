@@ -63,8 +63,10 @@ class Movies extends Component
     }
 
 	renderMoviesTable(movies) {
-		return (
-			<table className="table table-striped">
+        let content = this.state.movies.length > 0 ? (
+            <div>No movies exist yet. Add some!</div>
+        ) : (
+            <table className="table table-striped">
 				<thead>
 					<tr>
 						<th>Title</th>
@@ -88,6 +90,10 @@ class Movies extends Component
 					}
 				</tbody>
 			</table>
+        )
+        
+        return (
+            {content}
 		)
 	}
 

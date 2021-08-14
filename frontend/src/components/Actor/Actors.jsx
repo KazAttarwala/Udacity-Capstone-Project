@@ -64,7 +64,9 @@ class Actors extends Component
 	}
 
 	renderActorsTable(actors) {
-		return (
+		let content = this.state.actors.length > 0 ? (
+			<div>No actors exist yet. Add some!</div>
+		) : (
 			<table className="table table-striped">
 				<thead>
 					<tr>
@@ -91,6 +93,10 @@ class Actors extends Component
 					}
 				</tbody>
 			</table>
+		)
+		
+		return (
+			{content}
 		)
 	}
 
