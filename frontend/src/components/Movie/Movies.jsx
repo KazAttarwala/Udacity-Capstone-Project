@@ -63,7 +63,7 @@ class Movies extends Component
     }
 
 	renderMoviesTable(movies) {
-        let content = this.state.movies.length > 0 ? (
+        let content = this.state.movies.length <= 0 ? (
             <div>No movies exist yet. Add some!</div>
         ) : (
             <table className="table table-striped">
