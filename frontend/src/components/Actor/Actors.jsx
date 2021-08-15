@@ -96,7 +96,9 @@ class Actors extends Component
 		)
 		
 		return (
-			{content}
+			<div>
+				{content}
+			</div>
 		)
 	}
 

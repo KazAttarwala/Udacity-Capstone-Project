@@ -93,7 +93,9 @@ class Movies extends Component
         )
         
         return (
-            {content}
+            <div>
+				{content}
+			</div>
 		)
 	}
 
