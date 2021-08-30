@@ -34,7 +34,8 @@ A Flask Backend API with a React frontend to manage actors and movies in a casti
 <br>
 | Role | Username | Password |
 
-| --- | --- | --- |          
+| --- | --- | --- |     
+     
 | Casting Assistant | castingassistant@chitown.com | castingassistant#1 |
 | Casting Director | castingdirector@chitown.com | castingdirector#1 |
 | Executive Producer | execproducer@chitown.com | execproducer#1 |
