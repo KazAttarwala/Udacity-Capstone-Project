@@ -323,7 +323,6 @@ class CastingTestCase(unittest.TestCase):
         res = self.client().patch('/actors/1', headers=headers, json={"age": "baaaaaad"})
 
         self.assertEqual(res.status_code, 400)
-)
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
