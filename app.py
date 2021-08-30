@@ -16,12 +16,12 @@ def create_app(test_config=None):
   CORS(app, expose_headers='Authorization')
   migrate = Migrate(app, db)
 
-  @app.after_request
-  def after_request(response):
-      response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-      response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PATCH,PUT,DELETE,OPTIONS')
+  # @app.after_request
+  # def after_request(response):
+  #     response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  #     response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PATCH,PUT,DELETE,OPTIONS')
       
-      return response
+  #     return response
 
   @app.route('/')
   def serve():
@@ -259,6 +259,8 @@ def create_app(test_config=None):
     return response
 
   return app
+
+app = create_app()
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
