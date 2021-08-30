@@ -1,9 +1,9 @@
 ## Chitown Casting Agency 
 
-#Description
+# Description
 A Flask Backend API with a React frontend to manage actors and movies in a casting agency. 
 
-#Prerequisites
+# Prerequisites
 - Python3
 - Pip
 - Node
@@ -11,7 +11,7 @@ A Flask Backend API with a React frontend to manage actors and movies in a casti
 - Postgres
 - Venv
 
-#Setting up Local Development
+# Setting up Local Development
 1. Clone the Github repo at https://github.com/KazAttarwala/Udacity-Trivia-Project.git
 2. Create a virtual python environment by running `python3 -m venv env` in your native cli from the root directory. Afterwards, run `source env/bin/activate`; this will activate your virtual environment and provide a way to store your project dependencies.
 3. Run `pip install -r requirements.txt` from the root directory of your cloned repo. This will pull in the required dependencies for the Flask API.
@@ -27,25 +27,28 @@ A Flask Backend API with a React frontend to manage actors and movies in a casti
 11. Run `npm run start`. This will open a window to the React interface.
 12. Start developing/testing the application!!!
 
-#API Reference
+
+# API Reference
 - Click [here](https://chitown-casting.herokuapp.com) to visit the production app hosted on Heroku.
 - The following table lists the available roles for people who work at Chitown Casting Agency, along with their credentials.
-| Role                   | Username                     | Password            |
-| -----------------------|------------------------------|---------------------|          
-| Casting Assistant      | castingassistant@chitown.com | castingassistant#1  |
-| Casting Director       | castingdirector@chitown.com  | castingdirector#1   |
-| Executive Producer     | execproducer@chitown.com     | execproducer#1      |
+| Role | Username | Password |
+
+| --- | --- | --- |          
+| Casting Assistant | castingassistant@chitown.com | castingassistant#1 |
+| Casting Director | castingdirector@chitown.com | castingdirector#1 |
+| Executive Producer | execproducer@chitown.com | execproducer#1 |
 
 - The following table lists what actions each role can perform.
-| Role                   | Actions                                                                   | 
-| -----------------------|---------------------------------------------------------------------------|         
+| Role                   | Actions  | 
+
+| ----|-------|         
 | Casting Assistant      | Read from actors and movies                                               |
 | Casting Director       | Casting Assistant actions + add/delete actors + update actors and movies  |
 | Executive Producer     | Casting Director actions + add/delete movies                              | 
 
 - Logging in sends a request to the Auth0 authentication service for the JWT token. To access the token, open a Chrome Dev Tools window and log in as one of the roles. Go to the Network tab on the Dev Tools window, locate the request to Auth0, and copy the token from the Response tab. You must use this token 
 
-##Error Handling
+## Error Handling
 Errors are returned as JSON objects
 -General errors:
 ```
@@ -68,7 +71,7 @@ Errors are returned as JSON objects
   - 422: unprocessable 
   - 500: server error
 
-##Endpoints 
+## Endpoints 
 GET /movies
 - Returns a list of movies
 - Sample Request: 
@@ -209,7 +212,7 @@ curl https://chitown-casting.herokuapp.com/actors/6 -X DELETE --header 'authoriz
 }
 ```
 
-##Testing
+## Testing
 To run the tests, run the following commands from the root directory
 ```
 dropdb casting-agency-test
