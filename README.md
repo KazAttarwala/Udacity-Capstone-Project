@@ -31,6 +31,7 @@ A Flask Backend API with a React frontend to manage actors and movies in a casti
 # API Reference
 - Click [here](https://chitown-casting.herokuapp.com) to visit the production app hosted on Heroku.
 - The following table lists the available roles for people who work at Chitown Casting Agency, along with their credentials.
+<br>
 | Role | Username | Password |
 
 | --- | --- | --- |          
