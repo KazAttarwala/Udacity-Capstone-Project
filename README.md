@@ -33,8 +33,8 @@ A Flask Backend API with a React frontend to manage actors and movies in a casti
 - The following table lists the available roles for people who work at Chitown Casting Agency, along with their credentials.
 <br>
 | Role | Username | Password |
-<br>
-| --- | --- | --- |     
+
+| :--- | :--- | :--- |     
      
 | Casting Assistant | castingassistant@chitown.com | castingassistant#1 |
 | Casting Director | castingdirector@chitown.com | castingdirector#1 |
