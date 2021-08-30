@@ -19,8 +19,10 @@ A Flask Backend API with a React frontend to manage actors and movies in a casti
 5. Make sure your local Postgres server is running and run `createdb casting-agency` from your cli
 6. Run `flask db upgrade` from the root directory. This will create the movie and actor tables in the casting-agency database.
 7. Run the following commands from the root directory:
-- `export FLASK_APP=app.py`
-- `export FLASK_ENV=development`
+```
+export FLASK_APP=app.py
+export FLASK_ENV=development
+```
 8. Run `flask run --reload`
 9. Navigate into the frontend directory and open the package.json file. Scroll to the bottom of the file and change the proxy property to the url for your flask application. This ensures that api requests are routed to your local flask app instead of the production app on Heroku.
 10. Run `npm install`.
