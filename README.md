@@ -37,10 +37,12 @@ export FLASK_ENV=development
 <br>
 | Role | Username | Password |
 
-| --- | --- | --- |     
+|:---|:---|:---|     
      
 | Casting Assistant | castingassistant@chitown.com | castingassistant#1 |
+
 | Casting Director | castingdirector@chitown.com | castingdirector#1 |
+
 | Executive Producer | execproducer@chitown.com | execproducer#1 |
 
 - The following table lists what actions each role can perform.
@@ -55,7 +57,7 @@ export FLASK_ENV=development
 
 ## Error Handling
 Errors are returned as JSON objects
--General errors:
+- General errors:
 ```
 {
     "success": False, 
@@ -63,14 +65,14 @@ Errors are returned as JSON objects
     "message": "Something went wrong! Please try again."
 }
 ```
--Authentication errors:
+- Authentication errors:
 ```
 {
     "code": "authorization_header_missing", 
     "description": "Authorization header is expected"
 }
 ```
--Error types:
+- Error types:
   - 400: bad request
   - 404: not found
   - 422: unprocessable 
@@ -95,10 +97,10 @@ curl https://chitown-casting.herokuapp.com/movies --header 'authorization: Beare
 ```
 
 GET /movies/{movie_id}
--Returns the specified movie
--Sample Request:
+- Returns the specified movie
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/movies/4 --header 'authorization: Bearer insert_token_here'
--Sample Response:
+- Sample Response:
 ```
 {
    "movie":
@@ -111,10 +113,10 @@ curl https://chitown-casting.herokuapp.com/movies/4 --header 'authorization: Bea
 ```
 
 GET /actors
--Returns a list of actors
--Sample Request:
+- Returns a list of actors
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/actors --header 'authorization: Bearer insert_token_here'
--Sample Response:
+- Sample Response:
 ```
 {
    "actors":[
@@ -135,10 +137,10 @@ curl https://chitown-casting.herokuapp.com/actors --header 'authorization: Beare
 ```
 
 GET /actors/{actor_id}
--Returns the specified actor
--Sample Request:
+- Returns the specified actor
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/actors/6 --header 'authorization: Bearer insert_token_here'
--Sample Response:
+- Sample Response:
 ```
 {
    "actor":
@@ -152,10 +154,10 @@ curl https://chitown-casting.herokuapp.com/actors/6 --header 'authorization: Bea
 ```
 
 POST /movies
--Adds a new movie
--Sample Request:
+- Adds a new movie
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/movies -X POST --header 'authorization: Bearer insert_token_here' --header 'Content-Type: application/json' -d '{"title":"Black Widow", "release_date":"2021/07/09"}'
--Sample Response:
+- Sample Response:
 ```
 {
     "success": true
@@ -163,10 +165,10 @@ curl https://chitown-casting.herokuapp.com/movies -X POST --header 'authorizatio
 ```
 
 POST /actors
--Adds a new actor
--Sample Request:
+- Adds a new actor
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/actors -X POST --header 'authorization: Bearer insert_token_here' --header 'Content-Type: application/json' -d '{"name":"Scarlet Johansson", "gender":"Female", "age": 36}'
--Sample Response:
+- Sample Response:
 ```
 {
     "success": true
@@ -174,10 +176,10 @@ curl https://chitown-casting.herokuapp.com/actors -X POST --header 'authorizatio
 ```
 
 PATCH /movies/{movie_id}
--Updates a movie
--Sample Request:
+- Updates a movie
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/movies/4 -X PATCH --header 'authorization: Bearer insert_token_here' --header 'Content-Type: application/json' -d '{"title":"Black Swan", "release_date":"2010/12/03"}'
--Sample Response:
+- Sample Response:
 ```
 {
     "success": true
@@ -185,10 +187,10 @@ curl https://chitown-casting.herokuapp.com/movies/4 -X PATCH --header 'authoriza
 ```
 
 PATCH /actors/{actor_id}
--Updates an actor
--Sample Request:
+- Updates an actor
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/actors/9 -X PATCH --header 'authorization: Bearer insert_token_here' --header 'Content-Type: application/json' -d '{"name":"Natalie Portman", "age":40, "gender": "Female"}'
--Sample Response:
+- Sample Response:
 ```
 {
     "success": true
@@ -196,10 +198,10 @@ curl https://chitown-casting.herokuapp.com/actors/9 -X PATCH --header 'authoriza
 ```
 
 DELETE /movies/{movie_id}
--Deletes the specified movie
--Sample Request:
+- Deletes the specified movie
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/movies/4 -X DELETE --header 'authorization: Bearer insert_token_here'
--Sample Response:
+- Sample Response:
 ```
 {
     "success": true
@@ -207,10 +209,10 @@ curl https://chitown-casting.herokuapp.com/movies/4 -X DELETE --header 'authoriz
 ```
 
 DELETE /actors/{actor_id}
--Deletes the specified actor
--Sample Request:
+- Deletes the specified actor
+- Sample Request:
 curl https://chitown-casting.herokuapp.com/actors/6 -X DELETE --header 'authorization: Bearer insert_token_here'
--Sample Response:
+- Sample Response:
 ```
 {
     "success": true
