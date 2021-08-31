@@ -47,24 +47,24 @@ class CastingTestCase(unittest.TestCase):
             "age": 42
         }
         self.assistant = {
-            "username": "castingassistant@chitown.com",
-            "password": "castingassistant#1",
+            "username": os.environ.get('ASSISTANT_USERNAME'),
+            "password": os.environ.get('ASSISTANT_PASSWORD'),
             "jwt": {
-                "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlybkRPYUhWMnlMZ1c1aERKUHFWdSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktY29mZmVlLWZ1bGwtc3RhY2sudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwZjIwMjE4NjEwYTc2MDA2OWVjMDQxOCIsImF1ZCI6WyJodHRwczovL2xvY2FsaG9zdDo1MDAwIiwiaHR0cHM6Ly91ZGFjaXR5LWNvZmZlZS1mdWxsLXN0YWNrLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MzAyNjc3NDgsImV4cCI6MTYzMDM1NDE0OCwiYXpwIjoiSFl2TGgxTHg3NDl4NU9QN1RKc21xMmNRRjBKakhROVMiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIHJlYWQ6YWN0b3JzIHJlYWQ6bW92aWVzIiwicGVybWlzc2lvbnMiOlsicmVhZDphY3RvcnMiLCJyZWFkOm1vdmllcyJdfQ.dzoXuTEG_ZaJyEQ6SjkcBWo-nmtEZh8ypTixbPWUqavEgPxPe6T9ivB4gWwJb_b3npQbLmpnmwQq12I3AUe2WjEeYe27CbalYhjpTM6IjUC4iByJVtkZlcp4Sr_EyGwpIGcfVJhOp0t6S5gTYbBBVuk2ySFi_ANAOGPrjskaFgjzMks4cIW1zrpme7Rpft7tn6KejRSdIIN-LgY0vqhtKLuxIZLBM602wBqUP_h4FKucVpj9aVZyDdJBhja_tEA20zbXTbc_DQoxlU2Fr0XMzhyNTssU0AQKzAUcYYKDajprGkLg6aTpNfH19koU6NmzgtZM3OYgDZOraDlavYPvLg"
+                "authorization": os.environ.get('ASSISTANT')
             }
         }
         self.director = {
-            "username": "castingdirector@chitown.com",
-            "password": "castingdirector#1",
+            "username": os.environ.get('DIRECTOR_USERNAME'),
+            "password": os.environ.get('DIRECTOR_PASSWORD'),
             "jwt": {
-                "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlybkRPYUhWMnlMZ1c1aERKUHFWdSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktY29mZmVlLWZ1bGwtc3RhY2sudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwZjIwMjcxNjEwYTc2MDA2OWVjMDQzYiIsImF1ZCI6WyJodHRwczovL2xvY2FsaG9zdDo1MDAwIiwiaHR0cHM6Ly91ZGFjaXR5LWNvZmZlZS1mdWxsLXN0YWNrLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MzAyNjk4NDQsImV4cCI6MTYzMDM1NjI0NCwiYXpwIjoiSFl2TGgxTHg3NDl4NU9QN1RKc21xMmNRRjBKakhROVMiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIGNyZWF0ZTphY3RvciBkZWxldGU6YWN0b3IgdXBkYXRlOmFjdG9yIHVwZGF0ZTptb3ZpZSByZWFkOmFjdG9ycyByZWFkOm1vdmllcyIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTphY3RvciIsImRlbGV0ZTphY3RvciIsInJlYWQ6YWN0b3JzIiwicmVhZDptb3ZpZXMiLCJ1cGRhdGU6YWN0b3IiLCJ1cGRhdGU6bW92aWUiXX0.K1_VCI7CsTBJGw6tg0ld6ukSobWwtMVkm1RfC3ipj7vcAx8_oRCs8cDZg9PYzJZgn7gqDKxemWV856PuQKIL9vClDgd174GC43jv5-e6NrW7PdlrlS668Jcv5Edocfmw4bwWUy5G8otcEHrJ0B_WE43jeNdRw-Rd49KMofi-5yZ0FwZsxdJQiyQ8uymGgSbPzCrSBS_-9ogBt8WtTbGMKWFUUjp-6T9pNbnn2auEAmn_0NN4TKFK1gbC3GDxSyiq65q4_eHJcITT_Zev6bmwLZvqP9I-G8027b1kJm7QtksVY4V1rBAn8QNhSQ4qfMAashn3ReQPyt6Ym0zcPPj9kA"
+                "authorization": os.environ.get('DIRECTOR')
             }
         }
         self.execproducer = {
-            "username": "execproducer@chitown.com",
-            "password": "execproducer#1",
+            "username": os.environ.get('EXECPRODUCER_USERNAME'),
+            "password": os.environ.get('EXECPRODUCER_PASSWORD'),
             "jwt": {
-                "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlybkRPYUhWMnlMZ1c1aERKUHFWdSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktY29mZmVlLWZ1bGwtc3RhY2sudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwZjIwMmFhNjgwYjg5MDA2OGY0YjA1YSIsImF1ZCI6WyJodHRwczovL2xvY2FsaG9zdDo1MDAwIiwiaHR0cHM6Ly91ZGFjaXR5LWNvZmZlZS1mdWxsLXN0YWNrLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MzAyNzAwMTgsImV4cCI6MTYzMDM1NjQxOCwiYXpwIjoiSFl2TGgxTHg3NDl4NU9QN1RKc21xMmNRRjBKakhROVMiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIGNyZWF0ZTphY3RvciBjcmVhdGU6bW92aWUgZGVsZXRlOmFjdG9yIGRlbGV0ZTptb3ZpZSB1cGRhdGU6YWN0b3IgdXBkYXRlOm1vdmllIHJlYWQ6YWN0b3JzIHJlYWQ6bW92aWVzIiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOmFjdG9yIiwiY3JlYXRlOm1vdmllIiwiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwicmVhZDphY3RvcnMiLCJyZWFkOm1vdmllcyIsInVwZGF0ZTphY3RvciIsInVwZGF0ZTptb3ZpZSJdfQ.iTZE7Dg1hU8R-9DaIRDoqQnO9GIcJJObzIvhkdV4Q0Glg8kWfEeBTrlEFMGbDe3UV3mFrM5nT6XOfDZ1LMNBfRxTb_ewFgPM-XXl_Gkxkynnu7wiKFdZx-M8ZeOVjr2zS3BN9ak1pBI4BI2AVbVOgKFo_3Dc9kJnoLjLwYuL6tjydvkzwfBRxxhMS8bCnjb1Ttkw9ifztBUxW8w2zyn6kLhITAaesRPaAqFZ_dyRCTJp0yEcn8pPpopg_JdtH7FjlovSpDCDWMgVDnn6JbjLy9brf_RIVjCmvop4Tefc62tE7OrNv3y3_CohaV7zLgkLGijAAkTTcIL9TVy0uiwMiQ"
+                "authorization": os.environ.get('EXECPRODUCER')
             }
         }
     
