@@ -10,17 +10,20 @@ AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
 ALGORITHMS = os.environ.get('ALGORITHMS')
 API_AUDIENCE = os.environ.get('API_AUDIENCE')
 
-## AuthError Exception
+# AuthError Exception
 '''
 AuthError Exception
 A standardized way to communicate auth failure modes
 '''
+
+
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
 
-## Auth Header
+# Auth Header
+
 
 '''
 @TODO implement get_token_auth_header() method
@@ -30,9 +33,11 @@ class AuthError(Exception):
         it should raise an AuthError if the header is malformed
     return the token part of the header
 '''
+
+
 def get_token_auth_header():
     auth_header = request.headers.get('Authorization', None)
-   
+
     if not auth_header:
         raise AuthError({"code": "authorization_header_missing",
                         "description":
@@ -57,6 +62,7 @@ def get_token_auth_header():
     jwt = header_parts[1]
     return jwt
 
+
 '''
 @TODO implement check_permissions(permission, payload) method
     @INPUTS
@@ -68,20 +74,24 @@ def get_token_auth_header():
     it should raise an AuthError if the requested permission string is not in the payload permissions array
     return true otherwise
 '''
+
+
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
-                        raise AuthError({
-                            "code": "invalid-claims",
-                            "description": "Permissions not included in JWT"
-                        }, 400)
-    
+        raise AuthError({
+            "code": "invalid-claims",
+            "description": "Permissions not included in JWT"
+        }, 400)
+
     if permission not in payload['permissions']:
-                        raise AuthError({
-                            "code": "unauthorized",
-                            "description": "Permission not found"
-                        }, 403)
+        raise AuthError({
+            "code": "unauthorized",
+            "description": "Permission not found"
+        }, 403)
 
     return True
+
+
 '''
 @TODO implement verify_decode_jwt(token) method
     @INPUTS
@@ -95,8 +105,10 @@ def check_permissions(permission, payload):
 
     !!NOTE urlopen has a common certificate error described here: https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org
 '''
+
+
 def verify_decode_jwt(token):
-    jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
+    jsonurl = urlopen("https://" + AUTH0_DOMAIN + "/.well-known/jwks.json")
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
@@ -109,7 +121,7 @@ def verify_decode_jwt(token):
                 "n": key["n"],
                 "e": key["e"]
             }
-    
+
     payload = {}
     if rsa_key:
         try:
@@ -118,7 +130,7 @@ def verify_decode_jwt(token):
                 rsa_key,
                 algorithms=ALGORITHMS,
                 audience=API_AUDIENCE,
-                issuer="https://"+AUTH0_DOMAIN+"/"
+                issuer="https://" + AUTH0_DOMAIN + "/"
             )
         except jwt.ExpiredSignatureError:
             raise AuthError({"code": "token_expired",
@@ -136,6 +148,7 @@ def verify_decode_jwt(token):
 
     return payload
 
+
 '''
 @TODO implement @requires_auth(permission) decorator method
     @INPUTS
@@ -146,6 +159,8 @@ def verify_decode_jwt(token):
     it should use the check_permissions method validate claims and check the requested permission
     return the decorator which passes the decoded payload to the decorated method
 '''
+
+
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)

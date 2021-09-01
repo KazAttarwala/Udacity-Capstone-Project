@@ -17,7 +17,8 @@ class CastingTestCase(unittest.TestCase):
         self.app = create_app()
         self.client = self.app.test_client
         self.database_name = "casting-agency-test"
-        self.database_path = "postgresql://{}/{}".format('localhost:5432', self.database_name)
+        self.database_path = "postgresql://{}/{}".format(
+            'localhost:5432', self.database_name)
         self.oauth = OAuth(self.app)
         setup_db(self.app, self.database_path)
 
@@ -67,7 +68,7 @@ class CastingTestCase(unittest.TestCase):
                 "authorization": os.environ.get('EXECPRODUCER')
             }
         }
-    
+
     def tearDown(self):
         """Executed after each test"""
         pass
@@ -76,7 +77,7 @@ class CastingTestCase(unittest.TestCase):
         headers = self.director['jwt']
         res = self.client().post('/actors', headers=headers, json=self.create_actor)
         data = json.loads(res.data)
-       
+
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
@@ -84,15 +85,15 @@ class CastingTestCase(unittest.TestCase):
         headers = self.assistant['jwt']
         res = self.client().get('/actors', headers=headers)
         data = json.loads(res.data)
-       
+
         self.assertEqual(res.status_code, 200)
         self.assertTrue(len(data['actors']))
-    
+
     def test_get_single_actor(self):
         headers = self.assistant['jwt']
         res = self.client().get('/actors/1', headers=headers)
         data = json.loads(res.data)
-       
+
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['actor'])
 
@@ -116,7 +117,7 @@ class CastingTestCase(unittest.TestCase):
         headers = self.execproducer['jwt']
         res = self.client().post('/movies', headers=headers, json=self.create_movie)
         data = json.loads(res.data)
-       
+
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
@@ -124,7 +125,7 @@ class CastingTestCase(unittest.TestCase):
         headers = self.assistant['jwt']
         res = self.client().get('/movies', headers=headers)
         data = json.loads(res.data)
-       
+
         self.assertEqual(res.status_code, 200)
         self.assertTrue(len(data['movies']))
 
@@ -132,7 +133,7 @@ class CastingTestCase(unittest.TestCase):
         headers = self.assistant['jwt']
         res = self.client().get('/movies/1', headers=headers)
         data = json.loads(res.data)
-       
+
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['movie'])
 
@@ -201,43 +202,43 @@ class CastingTestCase(unittest.TestCase):
     def test_update_actor_for_assistant(self):
         headers = self.assistant['jwt']
         res = self.client().patch('/actors/4', headers=headers, json=self.update_actor)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_delete_actor_for_assistant(self):
         headers = self.assistant['jwt']
         res = self.client().delete('/actors/4', headers=headers)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_create_movie_for_assistant(self):
         headers = self.assistant['jwt']
         res = self.client().post('/movies', headers=headers, json=self.create_movie)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_update_movie_for_assistant(self):
         headers = self.assistant['jwt']
         res = self.client().patch('/movies/4', headers=headers, json=self.update_movie)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_delete_movie_for_assistant(self):
         headers = self.assistant['jwt']
         res = self.client().delete('/movies/4', headers=headers)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_create_movie_for_director(self):
         headers = self.director['jwt']
         res = self.client().post('/movies', headers=headers, json=self.create_movie)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_delete_movie_for_director(self):
         headers = self.director['jwt']
         res = self.client().delete('/movies/5', headers=headers)
-        
+
         self.assertEqual(res.status_code, 403)
 
     def test_404_on_delete_nonexisting__actor(self):
@@ -260,7 +261,11 @@ class CastingTestCase(unittest.TestCase):
 
     def test_400_for_create_actor_with_invalid_body(self):
         headers = self.director['jwt']
-        res = self.client().post('/actors', headers=headers, json={"gender": "Female"})
+        res = self.client().post(
+            '/actors',
+            headers=headers,
+            json={
+                "gender": "Female"})
 
         self.assertEqual(res.status_code, 400)
 
@@ -272,7 +277,8 @@ class CastingTestCase(unittest.TestCase):
 
     def test_400_for_create_movie_with_invalid_body(self):
         headers = self.execproducer['jwt']
-        res = self.client().post('/movies', headers=headers, json={"release_date": "Baaaaad"})
+        res = self.client().post('/movies', headers=headers,
+                                 json={"release_date": "Baaaaad"})
 
         self.assertEqual(res.status_code, 400)
 
@@ -280,13 +286,13 @@ class CastingTestCase(unittest.TestCase):
         headers = self.execproducer['jwt']
         res = self.client().get('/actors/99', headers=headers)
 
-        self.assertEqual(res.status_code, 404) 
+        self.assertEqual(res.status_code, 404)
 
     def test_404_for_get_nonexisting_movie(self):
         headers = self.execproducer['jwt']
         res = self.client().get('/movies/99', headers=headers)
 
-        self.assertEqual(res.status_code, 404) 
+        self.assertEqual(res.status_code, 404)
 
     def test_404_for_update_nonexisting_movie(self):
         headers = self.execproducer['jwt']
@@ -302,7 +308,8 @@ class CastingTestCase(unittest.TestCase):
 
     def test_400_update_movie_with_invalid_body(self):
         headers = self.execproducer['jwt']
-        res = self.client().patch('/movies/1', headers=headers, json={"release_date": "baaaaaad"})
+        res = self.client().patch('/movies/1', headers=headers,
+                                  json={"release_date": "baaaaaad"})
 
         self.assertEqual(res.status_code, 400)
 
@@ -320,9 +327,14 @@ class CastingTestCase(unittest.TestCase):
 
     def test_400_update_actor_with_invalid_body(self):
         headers = self.execproducer['jwt']
-        res = self.client().patch('/actors/1', headers=headers, json={"age": "baaaaaad"})
+        res = self.client().patch(
+            '/actors/1',
+            headers=headers,
+            json={
+                "age": "baaaaaad"})
 
         self.assertEqual(res.status_code, 400)
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
