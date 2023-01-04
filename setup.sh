@@ -1,4 +1,4 @@
-export DATABASE_URL='postgresql://mdaozsjziktvsh:c63fbbfe69ebd5b84c92e1eeab27f48b6ff4c2ce77dc0e19f9f888a90cf90739@ec2-3-218-149-60.compute-1.amazonaws.com:5432/dcv1g8b33mlihi'
+export DATABASE_URL='postgres://tpiluywtwzwgpq:629d85eba158a775f9bb33283bb5837dfb46d30c5b9d0379ed17d59c2a696744@ec2-52-203-118-49.compute-1.amazonaws.com:5432/d9p4oqp8splgug'
 export AUTH0_DOMAIN='udacity-coffee-full-stack.us.auth0.com'
 export ALGORITHMS='RS256'
 export API_AUDIENCE='https://localhost:5000'
